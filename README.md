@@ -127,8 +127,10 @@ std::vector<Body> bodies = generateBody(...);
 void applyAcceleration(float dt) {
     for (size_t i = 0; i < bodies.size(); i++) {
         for (size_t j = i + 1; j < bodies.size(); j++) {
-            bodies[i].updateVelocity(GravAccel(bodies[i], bodies[j]), dt);
-            bodies[j].updateVelocity(GravAccel(bodies[j], bodies[i]), dt);
+            const Vec2 &G_Accel = GravAccel(bodies[i], bodies[j]);
+            bodies[i].updateVelocity(G_Accel, dt);
+            bodies[j].updateVelocity(-G_Accel, dt);
+
         }
     }
 }
