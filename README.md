@@ -25,10 +25,10 @@ In the actual code this is written a bit differently from here––and the actu
 
 $$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} $$
 
-It's important to note that $\textbf{r}=(x, y, z)$, since we're working with a 2D simulation the $z$ component can be ignored. Let's expand out this equation to get a better idea for what we need to code. Let us denote the distance between each body to be $r_{21} = |\textbf{r}_2-\textbf{r}_1|$.
+It's important to note that $\textbf{r}=(x, y, z)$, since we're working with a 2D simulation the $z$ component can be ignored. Let's expand out this equation to get a better idea for what we need to code. Let us denote the distance between each body to be $r = |\textbf{r}_2-\textbf{r}_1|$.
 
 $$-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} $$
-$$ = -\frac{Gm_1 m_2}{r_{12}^3} \cdot \begin{bmatrix}
+$$ = -\frac{Gm_1 m_2}{r^3} \cdot \begin{bmatrix}
     x_2 - x_1 \\
     y_2 - y_1  
 \end{bmatrix}$$
