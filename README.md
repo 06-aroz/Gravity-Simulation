@@ -9,7 +9,7 @@ This project details how I went about modelling gravitational physics——this 
 The basic approach that we're going to take involves an acceleration algorithm of the form. 
 ```C++
 void applyAcceleration(float dt) {
-		for (size_t i = 0; i < bodies.size(); i++) {
+	for (size_t i = 0; i < bodies.size(); i++) {
             for (size_t j = i + 1; j < bodies.size(); j++) {
                 bodies[i].updateVelocity(GravAccel(bodies[i], bodies[j]), dt);
                 bodies[j].updateVelocity(GravAccel(bodies[j], bodies[i]), dt);
@@ -26,12 +26,12 @@ In the actual code this is written a bit differently from here––and the actu
 
 $$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} $$
 
-It's important to note that $\textbf{r}=(x, y, z)$, since we're working with a 2D simulation the $z$ component can be ignored. Let's expand out this equation to get a better idea for what we need to code. Let us denote the distance between each body to be $r_12 = |\textbf{r}_2-\textbf{r}_1|$.
+It's important to note that $\textbf{r}=(x, y, z)$, since we're working with a 2D simulation the $z$ component can be ignored. Let's expand out this equation to get a better idea for what we need to code. Let us denote the distance between each body to be $r_21 = |\textbf{r}_2-\textbf{r}_1|$.
 
-$$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} = \frac{Gm_1m_2}{r_{12}^3}
+$$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} = -\frac{Gm_{1}m_{2}}{r_{21}^3}
 \begin{bmatrix}
-\Delta x_21 \\
-\Delta y_21
+\Delta x_{21} \\
+\Delta y_{21}
 \end{bmatrix} $$
 
 As we can see here, all that is needed is the immidiate body-to-body distance and the body-to-body displacement as a vector. 
