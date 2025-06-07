@@ -27,7 +27,10 @@ $$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textb
 
 It's important to note that $\textbf{r}=(x, y, z)$, since we're working with a 2D simulation the $z$ component can be ignored. Let's expand out this equation to get a better idea for what we need to code. Let us denote the distance between each body to be $r_{21} = |\textbf{r}_2-\textbf{r}_1|$.
 
-$$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} $$
+$$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} = -\frac{Gm_1 m_2}{r^{3}_{12}} \cdot \begin{bmatrix}
+    x_2 - x_1 \\
+    y_2 - y_1  
+\end{bmatrix}$$
 
 As we can see here, all that is needed is the immidiate body-to-body distance and the body-to-body displacement as a vector. 
 
