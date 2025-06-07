@@ -9,7 +9,7 @@ This project details how I went about modelling gravitational physics——this 
 The basic approach that we're going to take involves an acceleration algorithm of the form. 
 ```C++
 void applyAcceleration(float dt) {
-	for (size_t i = 0; i < bodies.size(); i++) {
+	ffor (size_t i = 0; i < bodies.size(); i++) {
 		for (size_t j = i + 1; j < bodies.size(); j++) {
 			bodies[i].updateVelocity(GravAccel(bodies[i], bodies[j]), dt);
 			bodies[j].updateVelocity(GravAccel(bodies[j], bodies[i]), dt);
@@ -27,8 +27,7 @@ $$ \textbf{F}_G=-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textb
 
 It's important to note that $\textbf{r}=(x, y, z)$, since we're working with a 2D simulation the $z$ component can be ignored. Let's expand out this equation to get a better idea for what we need to code. Let us denote the distance between each body to be $r = |\textbf{r}_2-\textbf{r}_1|$.
 
-$$-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|} $$
-$$ = -\frac{Gm_1 m_2}{r^3} \cdot \begin{bmatrix}
+$$-\frac{Gm_1 m_2}{|\textbf{r}_2-\textbf{r}_1|^2}\cdot\frac{\textbf{r}_2-\textbf{r}_1}{|\textbf{r}_2-\textbf{r}_1|}= -\frac{Gm_1 m_2}{r^3} \cdot \begin{bmatrix}
     x_2 - x_1 \\
     y_2 - y_1  
 \end{bmatrix}$$
