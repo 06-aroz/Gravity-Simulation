@@ -25,6 +25,4 @@ While the Barnes-Hut algorithm works and does improve performance, as of writing
 # Project Details
 This project is an $n$-body gravity simulator which uses the Barnes-Hut algorithm to simulate the motion of [the system], and the regular brute-force algorithm for . The rest of the README will go over how I went about making this project and hopefully will serve as a guide to anyone who wants to do something similar. An $n$-body simulator numerically solves the [$n$-body problem](https://en.wikipedia.org/wiki/N-body_problem), which is a system of nonlinear ODEs of the following.
 
-$$
-m_i\frac{d^{2}\textbf{r}_{i}}{dt^{2}}=\sum_{j=1}^{n}
-$$
+$$m_i\frac{d^{2}\textbf{r}_{i}}{dt^{2}}=\sum_{j=1}^{n} \textbf{F}_{ij}$$
