@@ -22,9 +22,17 @@ While the Barnes-Hut algorithm works and does improve performance, as of writing
 * Further graphical optimizations
   * The previous section detailed better circle rendering, but I'll likely have to do more.
   * Implement proper shaders (?)
+### 3D sibling 
+Translating this project to a seperate 3D version isn't entirely difficult---at least for the math/computation---the main challenge is with the 3D rendering. Until I learn how to render spheres in 3D this will likely not happen. The only thing that would need to happen computation-wise is translating Vec2 to Vec3 and to translate the Barnes-Hut tree to an [Octree](https://en.wikipedia.org/wiki/Octree). 
 # Project Details
-This project is an $n$-body gravity simulator which uses the Barnes-Hut algorithm to simulate the motion of [the system]. The rest of the README will go over how I went about making this project and hopefully will serve as a guide to anyone who wants to do something similar. An $n$-body simulator numerically solves the [N-body problem](https://en.wikipedia.org/wiki/N-body_problem), which is a system of nonlinear ODEs of the following.\
+This project is an $n$-body gravity simulator which uses the Barnes-Hut algorithm to simulate the motion of [the system]. The rest of the README will go over how I went about making this project and hopefully will serve as a guide to anyone who wants to do something similar. An $n$-body simulator numerically solves the [N-body problem](https://en.wikipedia.org/wiki/N-body_problem), which is a system of nonlinear ODEs of the following.
 ```math
 m_i\frac{d^{2}\textbf{r}_i}{dt^{2}}=\sum_{j=1, j\neq i}^{n}\frac{Gm_{i}m_{j}}{\|\textbf{r}_j-\textbf{r}_i\|^{3}}\left(\textbf{r}_{j}-\textbf{r}_{i}\right)
 ```
+Which is just Newton's Second Law combined with [Newton's Law of Universal Gravitation](https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation). Admittedly the above equation can be a bit hard to read, so a simpler case would just be if $n=2$---being the [two-body problem](https://en.wikipedia.org/wiki/Two-body_problem). 
+```math
+\frac{d^{2}\textbf{r}_1}{dt^{2}}=\frac{Gm_{2}}{\|\textbf{r}_j-\textbf{r}_i\|^{3}}\left(\textbf{r}_j-\textbf{r}_i\right) 
+\frac{d^{2}\textbf{r}_m}{dt^{2}}=\frac{Gm_{1}}{\|\textbf{r}_j-\textbf{r}_i\|^{3}}\left(\textbf{r}_j-\textbf{r}_i\right)
+```
+Where we just divided out the masses. The two-body problem does have an exact solution using polar coordinates: $r=\frac{a(1-e^2}{1+e\cos{\phi}}$, but for the general $n$-body case no such solution exists, so we have to use numerical methods. 
 # Brute-Force Integration
